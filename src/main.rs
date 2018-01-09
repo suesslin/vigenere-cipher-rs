@@ -13,11 +13,7 @@ fn encrypt(input: &str, key: &str) -> String {
     let w = input.to_string().to_uppercase();
     let k = key.to_string().to_uppercase();
 
-    let mut key_alphabet_pos: Vec<usize> = Vec::new();
-
-    k.chars().for_each(|c|{
-        key_alphabet_pos.push(char_to_pos(c));
-    });
+    let key_alphabet_pos = k.chars().map(|c|{ char_to_pos(c) }).collect::<Vec<usize>>();
 
     // The amount of chars possible at key length
     let chunk_amount: f32 = w.len() as f32 / k.len() as f32;
