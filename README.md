@@ -1,13 +1,21 @@
 # Vigenère Cipher
 The famous cipher as a Rust algorithm
 
-## Deployment
-First, [Nightly Rust](https://doc.rust-lang.org/1.13.0/book/nightly-rust.html) needs to be installed.
+## Getting Started
+### Prerequistes
+First, [Nightly Rust](https://doc.rust-lang.org/1.13.0/book/nightly-rust.html) needs to be installed
+### Installing
+...
 
-Then, may the crate be ran through `cargo +nightly run`.
+## Running the tests
+Enter the vigenere-cipher repository and run `cargo test`
 
 ## Authors
 * **Hikaru** - *Initial work*
+
+# Versioning
+
+[SemVer](http://semver.org/) applies for versioning.
 
 ## License
 This project is licensed under GNU GPLv3 - see the [LICENSE file](/LICENSE) for details
