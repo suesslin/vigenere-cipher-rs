@@ -15,7 +15,7 @@ pub fn cipher(input: &str, key: &str, method: Method) -> String {
     let w = input.to_string().to_uppercase();
     let k = key.to_string().to_uppercase();
 
-    let key_alphabet_pos = k.chars().map(|c| char_to_pos(c)).collect::<Vec<usize>>();
+    let alphabet_chars_pos = k.chars().map(|c| char_to_pos(c)).collect::<Vec<usize>>();
 
     // The amount of chars possible at key length
     let chunk_amount = w.len() as f32 / k.len() as f32;
@@ -46,23 +46,32 @@ pub fn cipher(input: &str, key: &str, method: Method) -> String {
             char_chunk
                 .into_iter()
                 .enumerate()
-                .map(|(i, single)| {
-                    let encrypted_char_pos = match method {
-                        Method::Encipher => (single + key_alphabet_pos[i]) % ALPHABET.len(),
-                        Method::Decipher => {
-                            let pos = single as i8 - key_alphabet_pos[i] as i8;
-                            // If the position is negative, start from the end of the alphabet
-                            if pos < 0 {
-                                (ALPHABET.len() as i8 + pos) as usize
-                            } else {
-                                pos as usize
-                            }
-                        }
-                    };
-                    ALPHABET.chars().nth(encrypted_char_pos).unwrap()
-                })
+                .map(|(i, pos)| pos_to_moved_letter(pos, &method, &alphabet_chars_pos, i))
                 .collect::<String>()
         })
         .collect::<Vec<String>>()
         .concat()
+}
+
+// Moves position by key and returns the corresponding char
+fn pos_to_moved_letter(
+    letter_pos: usize,
+    method: &Method,
+    alphabet_char_pos: &Vec<usize>,
+    index: usize,
+) -> char {
+    let moved_char_pos = match method {
+        &Method::Encipher => (letter_pos + alphabet_char_pos[index]) % ALPHABET.len(),
+        &Method::Decipher => {
+            let new_pos = letter_pos as i8 - alphabet_char_pos[index] as i8;
+            // If the position is negative, start from the end of the alphabet
+            if new_pos < 0 {
+                (ALPHABET.len() as i8 + new_pos) as usize
+            } else {
+                new_pos as usize
+            }
+        }
+    };
+
+    ALPHABET.chars().nth(moved_char_pos).unwrap()
 }

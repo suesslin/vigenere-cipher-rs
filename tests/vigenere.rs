@@ -20,6 +20,9 @@ mod tests {
     fn decipher_enciphered_correct() {
         let word = "VIGENERE";
         let key = "DE";
-        assert_eq!(cipher(&cipher(word, key, Method::Encipher), key, Method::Decipher), word);
+        assert_eq!(
+            cipher(&cipher(word, key, Method::Encipher), key, Method::Decipher),
+            word
+        );
     }
 }
