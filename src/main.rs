@@ -2,7 +2,14 @@
 #![feature(inclusive_range_syntax)]
 
 fn main() {
-    println!("{}", encrypt("Zzzz", "Go"));
+    println!("{}", cipher("Lukas", "Go", Method::Encipher));
+    println!("{}", cipher("RIQOY", "Go", Method::Decipher))
+}
+
+
+enum Method {
+    Encipher,
+    Decipher
 }
 
 const ALPHABET: &'static str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -11,7 +18,7 @@ fn char_to_pos(input: char) -> usize {
     ALPHABET.chars().position(|c| input == c).unwrap()
 }
 
-fn encrypt(input: &str, key: &str) -> String {
+fn cipher(input: &str, key: &str, method: Method) -> String {
     let w = input.to_string().to_uppercase();
     let k = key.to_string().to_uppercase();
 
@@ -47,7 +54,20 @@ fn encrypt(input: &str, key: &str) -> String {
                 .into_iter()
                 .enumerate()
                 .map(|(i, single)| {
-                    let encrypted_char_pos = (single + key_alphabet_pos[i]) % ALPHABET.len();
+                    let encrypted_char_pos = match method {
+                        Method::Encipher => {
+                            (single + key_alphabet_pos[i]) % ALPHABET.len()
+                        },
+                        Method::Decipher => {
+                            let pos = single as i8 - key_alphabet_pos[i] as i8;
+                            // If the position is negative, start from the end of the alphabet
+                            if pos < 0 {
+                                (ALPHABET.len() as i8 + pos) as usize
+                            } else {
+                                pos as usize
+                            }
+                        }
+                    };
                     ALPHABET.chars().nth(encrypted_char_pos).unwrap()
                 })
                 .collect::<String>()
