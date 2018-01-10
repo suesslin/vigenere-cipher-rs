@@ -2,5 +2,8 @@
 name = "vigenere-cipher"
 version = "0.1.0"
 authors = ["Hikaru <hkru@protonmail.com>"]
+description = "Vigenère Cipher Library for Rust"
+license = "GPL-3.0"
+repository = "https://github.com/hkru/vigenere-cipher"
 
 [dependencies]

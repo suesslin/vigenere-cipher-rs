@@ -1,15 +1,8 @@
-// Vigenere Cipher
 #![feature(inclusive_range_syntax)]
 
-fn main() {
-    println!("{}", cipher("Lukas", "Go", Method::Encipher));
-    println!("{}", cipher("RIQOY", "Go", Method::Decipher))
-}
-
-
-enum Method {
+pub enum Method {
     Encipher,
-    Decipher
+    Decipher,
 }
 
 const ALPHABET: &'static str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -18,7 +11,7 @@ fn char_to_pos(input: char) -> usize {
     ALPHABET.chars().position(|c| input == c).unwrap()
 }
 
-fn cipher(input: &str, key: &str, method: Method) -> String {
+pub fn cipher(input: &str, key: &str, method: Method) -> String {
     let w = input.to_string().to_uppercase();
     let k = key.to_string().to_uppercase();
 
@@ -55,9 +48,7 @@ fn cipher(input: &str, key: &str, method: Method) -> String {
                 .enumerate()
                 .map(|(i, single)| {
                     let encrypted_char_pos = match method {
-                        Method::Encipher => {
-                            (single + key_alphabet_pos[i]) % ALPHABET.len()
-                        },
+                        Method::Encipher => (single + key_alphabet_pos[i]) % ALPHABET.len(),
                         Method::Decipher => {
                             let pos = single as i8 - key_alphabet_pos[i] as i8;
                             // If the position is negative, start from the end of the alphabet
