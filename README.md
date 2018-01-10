@@ -1,5 +1,5 @@
 # Vigenère Cipher
-[![Current Version](http://meritbadge.herokuapp.com/vigenere-cipher)](https://crates.io/crates/caesarlib)
+[![Current Version](http://meritbadge.herokuapp.com/vigenere-cipher)](https://crates.io/crates/vigenere-cipher)
 
 The famous cipher as a Rust algorithm
 
