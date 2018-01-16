@@ -25,7 +25,7 @@ use vigenere_cipher::*;
 Enter the vigenere-cipher repository and run `cargo test`
 
 ## Authors
-* **Hikaru** - *Initial work*
+* **Lukas A. Mueller** - *Initial work*
 
 # Versioning
 
