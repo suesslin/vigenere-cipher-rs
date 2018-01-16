@@ -1,7 +1,7 @@
 # Vigenère Cipher
 [![Current Version](http://meritbadge.herokuapp.com/vigenere-cipher)](https://crates.io/crates/vigenere-cipher)
 
-The famous cipher as a Rust algorithm
+An implementation of the Vigènere cipher in Rust. This particular cipher is historical and doesn't serve the purpose to be used in modern applications that require true application. 
 
 ## Getting Started
 ### Prerequistes
