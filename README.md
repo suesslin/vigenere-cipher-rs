@@ -22,7 +22,7 @@ use vigenere_cipher::*;
 ```
 
 ## Running the tests
-Enter the vigenere-cipher repository and run `cargo test`
+Enter the vigenere-cipher repository and run `cargo +nightly test`
 
 ## Authors
 * **Lukas A. Mueller** - *Initial work*
