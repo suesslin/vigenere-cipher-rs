@@ -15,7 +15,7 @@ pub fn cipher(input: &str, key: &str, method: Method) -> String {
     let w = input.to_string().to_uppercase();
     let k = key.to_string().to_uppercase();
 
-    let alphabet_chars_pos = k.chars().map(|c| char_to_pos(c)).collect::<Vec<usize>>();
+    let alphabet_chars_pos = k.chars().map(char_to_pos).collect::<Vec<usize>>();
 
     // The amount of chars possible at key length
     let chunk_amount = w.len() as f32 / k.len() as f32;
